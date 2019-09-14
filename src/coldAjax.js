@@ -1,5 +1,5 @@
 export default {
-  coldAjax(coldAjaxMethod, coldAjaxUrl, coldAjaxProcessor) {
+  coldAjax(coldAjaxMethod, coldAjaxUrl, coldAjaxProcessor, data) {
     const coldHttpRequest = new XMLHttpRequest();
 
     function loading() {
@@ -8,7 +8,11 @@ export default {
       }
       coldHttpRequest.onreadystatechange = processRequest;
       coldHttpRequest.open(coldAjaxMethod, coldAjaxUrl, true);
-      coldHttpRequest.send();
+      if (data) {
+        coldHttpRequest.send(data);
+      } else {
+        coldHttpRequest.send();
+      }
     }
 
     function processRequest() {

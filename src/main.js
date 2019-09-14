@@ -6,13 +6,18 @@ let fileInput = document.querySelector("#file");
 let image = document.querySelector(".image");
 
 const changeImage = () => {
-  console.log(fileInput.files);
+  // console.log(fileInput.files);
+  var data = new FormData();
+  data.append("input_file_name", fileInput.files);
+
+  console.log(data);
+  ColdAjax.coldAjax("POST", "http://localhost:3000/upload", response, data);
 };
 
 const response = data => {
   console.log(data);
 };
 
-ColdAjax.coldAjax("POST", "http://localhost:3000/upload", response);
+// ColdAjax.coldAjax("POST", "http://localhost:3000/upload", response);
 
 fileInput.addEventListener("change", changeImage, false);
