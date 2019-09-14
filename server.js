@@ -17,19 +17,32 @@ const upload = multer({
   dest: "./upload/",
 });
 
+function randomTag(length) {
+  let result = "";
+  let characters = "abcdefghjklmnpqrstuvwxyz0123456789";
+  let charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
 app.post("/upload", upload.single("file_name"), (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
+
   const tempPath = req.file.path;
-  const targetPath = path.join(__dirname, "./uploads/image.png");
+  const randomId = randomTag(5);
+  const newPath = req.file.originalname.replace(".", "-" + randomId + ".");
+  const targetPath = "./upload/" + newPath;
 
-  if (path.extname(req.file.originalname).toLowerCase() === ".png") {
-    fs.rename(tempPath, targetPath, err => {
-      //   if (err) return handleError(err, res);
-
-      res
-        .status(200)
-        .contentType("text/plain")
-        .end("File uploaded!");
-    });
-  }
+  fs.rename(tempPath, targetPath, err => {
+    let message = "file-success";
+    if (err) {
+      message = err.toString();
+    }
+    res
+      .status(200)
+      .contentType("text/plain")
+      .end(message + ":" + newPath);
+  });
 });

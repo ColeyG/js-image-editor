@@ -1,5 +1,5 @@
 export default {
-  coldAjax(coldAjaxMethod, coldAjaxUrl, coldAjaxProcessor, data) {
+  req(coldAjaxMethod, coldAjaxUrl, coldAjaxProcessor, data) {
     const coldHttpRequest = new XMLHttpRequest();
 
     function loading() {
