@@ -17,7 +17,7 @@ const upload = multer({
   dest: "./upload/",
 });
 
-function randomTag(length) {
+const randomTag = length => {
   let result = "";
   let characters = "abcdefghjklmnpqrstuvwxyz0123456789";
   let charactersLength = characters.length;
@@ -25,7 +25,7 @@ function randomTag(length) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
-}
+};
 
 app.post("/upload", upload.single("file_name"), (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
