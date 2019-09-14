@@ -5,8 +5,8 @@ import ColdAjax from "./coldAjax.js";
 let fileInput = document.querySelector("#file");
 let image = document.querySelector(".image");
 
-const changeImage = file => {
-  console.log(file.path);
+const changeImage = () => {
+  console.log(fileInput.files);
 };
 
 const response = data => {
