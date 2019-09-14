@@ -12,14 +12,8 @@ httpServer.listen(3000, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
-app.get("/upload", (req, res) => {
-  res
-    .status(200)
-    .contentType("text/plain")
-    .end("Responsizzle");
-});
-
 app.post("/upload", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
   res
     .status(200)
     .contentType("text/plain")
