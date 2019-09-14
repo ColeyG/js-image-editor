@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/coldAjax.js":
+/*!*************************!*\
+  !*** ./src/coldAjax.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  coldAjax: function coldAjax(coldAjaxMethod, coldAjaxUrl, coldAjaxProcessor) {\n    var coldHttpRequest = new XMLHttpRequest();\n\n    function loading() {\n      if (!coldHttpRequest) {\n        alert(\"Request Failed!\");\n      }\n\n      coldHttpRequest.onreadystatechange = processRequest;\n      coldHttpRequest.open(coldAjaxMethod, coldAjaxUrl, true);\n      coldHttpRequest.send();\n    }\n\n    function processRequest() {\n      if (coldHttpRequest.readyState == XMLHttpRequest.DONE) {\n        if (coldHttpRequest.status === 200) {\n          var data = coldHttpRequest.responseText;\n          var resp = data;\n          coldAjaxProcessor(resp);\n        } else {\n          var _resp = \"Failed Request!\";\n          coldAjaxProcessor(_resp);\n        }\n      }\n    }\n\n    loading();\n  }\n});\n\n//# sourceURL=webpack:///./src/coldAjax.js?");
+
+/***/ }),
+
 /***/ "./src/main.js":
 /*!*********************!*\
   !*** ./src/main.js ***!
@@ -94,7 +106,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_meyer_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/meyer.css */ \"./styles/meyer.css\");\n/* harmony import */ var _styles_meyer_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_styles_meyer_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/main.scss */ \"./styles/main.scss\");\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_main_scss__WEBPACK_IMPORTED_MODULE_1__);\n\n\nlet fileInput = document.querySelector(\"#file\");\nlet image = document.querySelector(\".image\");\n\nconst changeImage = file => {\n  console.log(file.path);\n};\n\nfileInput.addEventListener(\"change\", changeImage, false);\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_meyer_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/meyer.css */ \"./styles/meyer.css\");\n/* harmony import */ var _styles_meyer_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_styles_meyer_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles/main.scss */ \"./styles/main.scss\");\n/* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_styles_main_scss__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _coldAjax_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./coldAjax.js */ \"./src/coldAjax.js\");\n\n\n\nvar fileInput = document.querySelector(\"#file\");\nvar image = document.querySelector(\".image\");\n\nvar changeImage = function changeImage(file) {\n  console.log(file.path);\n};\n\nvar response = function response(data) {\n  console.log(data);\n};\n\n_coldAjax_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"].coldAjax(\"POST\", \"http://localhost:3000/upload\", response);\nfileInput.addEventListener(\"change\", changeImage, false);\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ }),
 
