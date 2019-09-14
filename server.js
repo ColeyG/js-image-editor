@@ -33,6 +33,7 @@ app.post("/upload", upload.single("file_name"), (req, res) => {
   const tempPath = req.file.path;
   const randomId = randomTag(5);
   const newPath = req.file.originalname.replace(".", "-" + randomId + ".");
+  newPath.replace(":", "");
   const targetPath = "./upload/" + newPath;
 
   fs.rename(tempPath, targetPath, err => {
