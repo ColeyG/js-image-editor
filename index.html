@@ -12,9 +12,11 @@
     <div class="image-editor">
       <img class="image" src="images/cat.jpg" alt="Default Image" />
       <div class="actions">
-        <input class="file-input" type="file" id="file" accept="image/png, image/jpeg, image/jpg, image/gif, image/svg, image/bmp" />
-        <label for="file">Choose a File</label>
-        <button class="action">Upload</button>
+        <form method="post" enctype="multipart/form-data" action="/uploadImage">
+          <input class="file-input" type="file" id="file" accept="image/png, image/jpeg, image/jpg, image/gif, image/svg, image/bmp" />
+          <label for="file">Choose a File</label>
+          <button class="action">Upload</button>
+        </form>
       </div>
     </div>
     <script src="compiled/built.js"></script>
