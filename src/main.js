@@ -13,7 +13,9 @@ const changeImage = () => {
 };
 
 const response = data => {
-  console.log(data);
+  let newImage = data.split(":")[1];
+
+  image.src = "upload/" + newImage;
 };
 
 fileInput.addEventListener("change", changeImage, false);
