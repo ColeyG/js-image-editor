@@ -8,9 +8,9 @@ let image = document.querySelector(".image");
 const changeImage = () => {
   // console.log(fileInput.files);
   var data = new FormData();
-  data.append("input_file_name", fileInput.files);
+  data.append("file_name", fileInput.files[0]);
 
-  console.log(data);
+  // console.log(fileInput.files[0]);
   ColdAjax.coldAjax("POST", "http://localhost:3000/upload", response, data);
 };
 
