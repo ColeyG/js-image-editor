@@ -43,6 +43,21 @@ const imageModifers = () => {
       case "contrast":
         cssFilter(modifier, "contrast(200%)");
         break;
+      case "saturate":
+        cssFilter(modifier, "saturate(200%)");
+        break;
+      case "sepia":
+        cssFilter(modifier, "sepia(100%)");
+        break;
+      case "brighten":
+        cssFilter(modifier, "brightness(2)");
+        break;
+      case "darken":
+        cssFilter(modifier, "brightness(0.5)");
+        break;
+      case "uglify":
+        cssFilter(modifier, "brightness(2) saturate(300%) hue-rotate(45deg)");
+        break;
     }
   }
 };
