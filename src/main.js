@@ -4,10 +4,10 @@ import ColdAjax from "./coldAjax.js";
 
 let fileInput = document.querySelector("#file"),
   fileInputLabel = document.querySelector(".file-input-label"),
-  editButtons = document.querySelector(".edit-buttons"),
   image = document.querySelector(".image"),
   imageIsInit = false,
-  modifierButtons = document.querySelectorAll(".modifier");
+  modifierButtons = document.querySelectorAll(".modifier"),
+  appliedModifiers = [];
 
 const changeImage = () => {
   var data = new FormData();
@@ -29,12 +29,33 @@ const response = data => {
 const imageModifers = () => {
   if (imageIsInit) {
     let modifier = event.target.innerHTML.toLowerCase();
+
     switch (modifier) {
-      case "skew":
-        console.log(modifier);
+      case "invert":
+        cssFilter(modifier, "invert(100%)");
+        break;
+      case "grayscale":
+        cssFilter(modifier, "grayscale(100%)");
+        break;
+      case "hue":
+        cssFilter(modifier, "hue-rotate(90deg)");
+        break;
+      case "contrast":
+        cssFilter(modifier, "contrast(200%)");
         break;
     }
   }
+};
+
+const cssFilter = (modifier, filter) => {
+  if (appliedModifiers.includes(modifier)) {
+    image.style.filter = image.style.filter.replace(filter, "");
+    appliedModifiers = appliedModifiers.filter(appliedModifier => appliedModifier !== modifier);
+  } else {
+    image.style.filter += filter;
+    appliedModifiers.push(modifier);
+  }
+  console.log(modifier);
 };
 
 fileInput.addEventListener("change", changeImage, false);
