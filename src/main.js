@@ -13,7 +13,7 @@ const changeImage = () => {
   var data = new FormData();
   data.append("file_name", fileInput.files[0]);
 
-  ColdAjax.req("POST", "http://localhost:3000/upload", response, data);
+  ColdAjax.req("POST", "http://155.138.147.77:3000/upload", response, data);
 };
 
 const response = data => {
