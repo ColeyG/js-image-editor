@@ -58,6 +58,18 @@ const imageModifers = () => {
       case "uglify":
         cssFilter(modifier, "brightness(2) saturate(300%) hue-rotate(45deg)");
         break;
+      case "flip x":
+        cssTransform(modifier, "scaleX(-1)");
+        break;
+      case "flip y":
+        cssTransform(modifier, "scaleY(-1)");
+        break;
+      case "skew left":
+        cssTransform(modifier, "skewY(-10deg)");
+        break;
+      case "skew right":
+        cssTransform(modifier, "skewY(10deg)");
+        break;
     }
   }
 };
@@ -68,6 +80,17 @@ const cssFilter = (modifier, filter) => {
     appliedModifiers = appliedModifiers.filter(appliedModifier => appliedModifier !== modifier);
   } else {
     image.style.filter += filter;
+    appliedModifiers.push(modifier);
+  }
+  console.log(modifier);
+};
+
+const cssTransform = (modifier, transform) => {
+  if (appliedModifiers.includes(modifier)) {
+    image.style.transform = image.style.transform.replace(transform, "");
+    appliedModifiers = appliedModifiers.filter(appliedModifier => appliedModifier !== modifier);
+  } else {
+    image.style.transform += transform;
     appliedModifiers.push(modifier);
   }
   console.log(modifier);
