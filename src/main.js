@@ -2,6 +2,9 @@ import "../styles/meyer.css";
 import "../styles/main.scss";
 import ColdAjax from "./coldAjax.js";
 
+const server = "http://155.138.147.77:3000/";
+const resp = "http://155.138.147.77/js-image-editor/";
+
 let fileInput = document.querySelector("#file"),
   fileInputLabel = document.querySelector(".file-input-label"),
   image = document.querySelector(".image"),
@@ -13,13 +16,13 @@ const changeImage = () => {
   var data = new FormData();
   data.append("file_name", fileInput.files[0]);
 
-  ColdAjax.req("POST", "http://155.138.147.77:3000/upload", response, data);
+  ColdAjax.req("POST", server + "upload", response, data);
 };
 
 const response = data => {
   let newImage = data.split(":")[1];
 
-  image.src = "upload/" + newImage;
+  image.src = resp + "upload/" + newImage;
   image.style.display = "block";
   fileInput.style.display = "none";
   fileInputLabel.style.display = "none";

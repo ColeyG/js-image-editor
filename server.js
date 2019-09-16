@@ -41,6 +41,9 @@ app.post("/upload", upload.single("file_name"), (req, res) => {
     if (err) {
       message = err.toString();
     }
+
+    console.log("Uploaded: " + newPath);
+
     res
       .status(200)
       .contentType("text/plain")
