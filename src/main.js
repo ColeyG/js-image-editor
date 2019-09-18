@@ -1,6 +1,5 @@
 import "../styles/meyer.css";
 import "../styles/main.scss";
-import ColdAjax from "./coldAjax.js";
 
 const remote = "http://155.138.147.77";
 const server = remote + ":3000/";
@@ -17,7 +16,13 @@ const changeImage = () => {
   var data = new FormData();
   data.append("file_name", fileInput.files[0]);
 
-  ColdAjax.req("POST", server + "upload", response, data);
+  fetch(server + "upload", { method: "POST", body: data })
+    .then(resp => {
+      return resp.text();
+    })
+    .then(data => {
+      response(data);
+    });
 };
 
 const response = data => {
