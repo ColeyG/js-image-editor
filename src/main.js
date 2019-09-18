@@ -2,8 +2,9 @@ import "../styles/meyer.css";
 import "../styles/main.scss";
 import ColdAjax from "./coldAjax.js";
 
-const server = "http://155.138.147.77:3000/";
-const resp = "http://155.138.147.77/js-image-editor/";
+const remote = "http://155.138.147.77";
+const server = remote + ":3000/";
+const resp = remote + "/js-image-editor/";
 
 let fileInput = document.querySelector("#file"),
   fileInputLabel = document.querySelector(".file-input-label"),
