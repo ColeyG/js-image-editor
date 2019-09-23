@@ -1,12 +1,12 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
 module.exports = {
-  entry: "./src/main.js",
+  entry: './src/main.js',
   watch: true,
   output: {
-    path: path.resolve(__dirname, "compiled"),
-    filename: "./built.js",
+    path: path.resolve(__dirname, 'compiled'),
+    filename: './built.js',
   },
   module: {
     rules: [
@@ -14,7 +14,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
@@ -23,19 +23,19 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === "development",
+              hmr: process.env.NODE_ENV === 'development',
             },
           },
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
     ],
   },
-  plugins: [new MiniCssExtractPlugin({ filename: "bundled.css" })],
+  plugins: [new MiniCssExtractPlugin({ filename: 'bundled.css' })],
 };
