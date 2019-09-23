@@ -17,6 +17,10 @@
   "rules": {
     "no-console": "off",
     "no-plusplus": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "no-new": "off",
+    "no-undef": "off",
+    "no-bitwise": "off",
+    "no-param-reassign": "off"
   }
 }
