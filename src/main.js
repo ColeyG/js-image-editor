@@ -1,10 +1,6 @@
 import '../styles/meyer.css';
 import '../styles/main.scss';
 
-const remote = 'http://155.138.147.77';
-const server = `${remote}:3000/`;
-const resp = `${remote}/js-image-editor/`;
-
 const fileInput = document.querySelector('#file');
 const fileInputLabel = document.querySelector('.file-input-label');
 const image = document.querySelector('.image');
@@ -12,25 +8,23 @@ let imageIsInit = false;
 const modifierButtons = document.querySelectorAll('.modifier');
 let appliedModifiers = [];
 
-const response = (data) => {
-  const newImage = data.split(':')[1];
+const changeImage = () => {
+  const newFile = document.querySelector('#file').files[0];
+  const newImage = document.querySelector('.image');
+  const reader = new FileReader();
 
-  image.src = `${resp}upload/${newImage}`;
+  reader.addEventListener('load', () => {
+    newImage.src = reader.result;
+  }, false);
+
+  if (file) {
+    reader.readAsDataURL(newFile);
+  }
+
   image.style.display = 'block';
   fileInput.style.display = 'none';
   fileInputLabel.style.display = 'none';
   imageIsInit = true;
-};
-
-const changeImage = () => {
-  const data = new FormData();
-  data.append('file_name', fileInput.files[0]);
-
-  fetch(`${server}upload`, { method: 'POST', body: data })
-    .then((resp) => resp.text())
-    .then((data) => {
-      response(data);
-    });
 };
 
 const cssTransform = (modifier, transform) => {
