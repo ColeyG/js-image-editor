@@ -17,14 +17,13 @@ const changeImage = () => {
     newImage.src = reader.result;
   }, false);
 
-  if (file) {
+  if (newImage) {
     reader.readAsDataURL(newFile);
+    image.style.display = 'block';
+    fileInput.style.display = 'none';
+    fileInputLabel.style.display = 'none';
+    imageIsInit = true;
   }
-
-  image.style.display = 'block';
-  fileInput.style.display = 'none';
-  fileInputLabel.style.display = 'none';
-  imageIsInit = true;
 };
 
 const cssTransform = (modifier, transform) => {
